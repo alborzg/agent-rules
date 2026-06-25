@@ -51,6 +51,32 @@ Claude Code resolves `@path` imports, so the rules load while the rest of the
 file stays local to that machine. Symlinking is the portable fallback for agents
 that do not support imports.
 
+## Optional: SessionStart hook (pick up where you left off)
+
+`hooks/session-start.sh` prints the top of the current project's
+`docs/WORKLOG.md` and its open PRs, so every new session opens already knowing
+where work paused. It pairs with the `handoff` skill (in the skills repo), which
+writes that worklog. The script is best-effort and never fails a session.
+
+Wire it once per machine by adding this to `~/.claude/settings.json`:
+
+```json
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          { "type": "command", "command": "bash ~/Projects/agent-rules/hooks/session-start.sh" }
+        ]
+      }
+    ]
+  }
+}
+```
+
+`install.sh` does not edit `settings.json` for you (it is machine-local config),
+it just reminds you of this snippet.
+
 ## Keep it public-safe
 
 This repo is public. `RULES.md` must stay free of secrets, tokens, client names,

@@ -23,4 +23,9 @@ link "$HOME/.claude/CLAUDE.md"
 link "$HOME/.codex/AGENTS.md"
 # link "$HOME/.gemini/GEMINI.md"   # uncomment if you use Gemini CLI
 
+echo
+echo "optional: to surface each project's worklog + open PRs at session start,"
+echo "add the SessionStart hook to ~/.claude/settings.json (see README), pointing at:"
+echo "  bash $(cd "$(dirname "$0")" && pwd)/hooks/session-start.sh"
+echo
 echo "done."
