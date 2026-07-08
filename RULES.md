@@ -36,3 +36,24 @@ machine-specific paths, or client names. Those belong in per-project memory.
 
 - Before committing, make it compile cleanly, format it, and pass the tests.
 - Leave at least one runnable check behind for non-trivial logic.
+
+## Repository hygiene
+
+- Keep the repo root for config and entry points only. Feature docs, plans, and
+  design references belong under `docs/`. Session notes and scratch files go
+  there too or get gitignored, never left loose in the root.
+
+## Security
+
+- Sanitize anything that comes from a user or an external system before storing
+  or rendering it. Prefer the framework's built-in escaping over hand-rolled
+  sanitization.
+- Verify webhook signatures on every inbound provider callback. Keep secrets
+  server-side, never ship them to the client.
+
+## Accessibility
+
+- Cover the basics by default: keyboard navigation, semantic markup, labels on
+  interactive controls, and WCAG AA color contrast.
+
+@RTK.md
