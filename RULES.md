@@ -33,6 +33,15 @@ machine-specific paths, or client names. Those belong in per-project memory.
   abstractions, but never trade away correctness, security, or quality just to
   write less code.
 
+## Shared checkouts and parallel work
+
+- A project checkout is shared state: the human or another agent may switch
+  branches under you at any time. Verify the current branch immediately before
+  committing; never assume it is where you left it.
+- When dispatching agents or running parallel tasks against the same repo, give
+  each concurrent actor its own git worktree or clone. The primary checkout
+  belongs to the human.
+
 ## Bug fixes
 
 - Start by reproducing the bug end-to-end, as close as possible to how an end
