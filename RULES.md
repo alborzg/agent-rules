@@ -41,6 +41,17 @@ machine-specific paths, or client names. Those belong in per-project memory.
 - When dispatching agents or running parallel tasks against the same repo, give
   each concurrent actor its own git worktree or clone. The primary checkout
   belongs to the human.
+- Claim a tracked issue before starting it: comment "Taken: <who/session>,
+  <date>" on the issue, or self-assign. Local state (a dirty tree, a branch)
+  is invisible to other machines and sessions; the claim must live where the
+  issue lives. This matters most when a delivery crosses repos or layers
+  (backend + mobile app, service + infra): another actor picking up the
+  sibling task cannot see your checkout at all. Remove or resolve the claim
+  when you finish or abandon the work.
+- Symmetrically, before picking up an issue, check for an existing claim:
+  assignee, a claim comment, an open PR, or the issue's designated branch
+  already existing. Any of these means someone may be mid-flight; coordinate
+  or monitor instead of duplicating the work.
 
 ## Bug fixes
 
