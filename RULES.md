@@ -17,6 +17,13 @@ machine-specific paths, or client names. Those belong in per-project memory.
   parentheses, or two sentences instead.
 - Plain and direct. No filler, no marketing voice, no padding.
 
+## Referring to PRs and issues
+
+- Always name the repo and number together, with a link:
+  `owner/repo#123` plus the URL, never a bare "#123" or "PR 123".
+  This applies in chat, commit messages, PR bodies, issue bodies, and docs,
+  and matters most on multi-repo tasks where bare numbers are ambiguous.
+
 ## Technical decisions
 
 - Do not over-weight development cost. For an agent, writing and changing code is
