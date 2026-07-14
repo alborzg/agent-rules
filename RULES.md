@@ -85,4 +85,17 @@ machine-specific paths, or client names. Those belong in per-project memory.
 - Cover the basics by default: keyboard navigation, semantic markup, labels on
   interactive controls, and WCAG AA color contrast.
 
+## Deploys and configuration
+
+- When you add a runtime environment variable that code reads (`System.fetch_env!`,
+  `process.env`, `os.environ`, and the like), wire it through every layer that must
+  forward it, not just the code: the deploy manifest (docker-compose `environment:`,
+  Kubernetes manifest, Procfile), the `.env.example`, and the secrets store. A
+  variable set only in a hosting UI never reaches a container whose compose file
+  enumerates its env explicitly.
+- Treat this as a review checkpoint. Before shipping a change that adds or renames a
+  required env var, confirm the real deploy target actually passes it. Local runs
+  read the environment directly and will not catch a missing passthrough, so the gap
+  surfaces only as a production boot crash.
+
 @RTK.md
