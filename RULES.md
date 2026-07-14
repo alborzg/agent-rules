@@ -19,10 +19,12 @@ machine-specific paths, or client names. Those belong in per-project memory.
 
 ## Referring to PRs and issues
 
-- Always name the repo and number together, with a link:
-  `owner/repo#123` plus the URL, never a bare "#123" or "PR 123".
-  This applies in chat, commit messages, PR bodies, issue bodies, and docs,
-  and matters most on multi-repo tasks where bare numbers are ambiguous.
+- Always name the repo and number together, with a link, and add the title or a
+  short label: `owner/repo#123 (Stripe billing)` plus the URL, never a bare
+  "#123" or "PR 123". The repo and number keep it unambiguous on multi-repo
+  tasks; the title or label saves the reader a lookup.
+- This applies everywhere the reference appears: chat, commit messages, PR
+  bodies, issue bodies, planning docs, and cross-links between issues.
 
 ## Technical decisions
 
