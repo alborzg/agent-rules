@@ -55,6 +55,19 @@ machine-specific paths, or client names. Those belong in per-project memory.
   already existing. Any of these means someone may be mid-flight; coordinate
   or monitor instead of duplicating the work.
 
+## Waiting on long-running work
+
+- Never busy-wait by emitting no-op tool calls ("echo .", check-again turns)
+  while a build, test run, or deploy finishes. Every agent turn re-sends the
+  whole conversation to the model, so a minute of polling can cost more than
+  the change being verified.
+- Wait with a single blocking call with an explicit timeout, or start the
+  work as a tracked background task and end the turn; harnesses that track
+  background tasks re-invoke the agent when the task exits.
+- For remote work (CI, deploys), use the provider's blocking watch command
+  (like `gh run watch`) or one check sized to how long the work actually
+  takes, never a per-turn status poll.
+
 ## Bug fixes
 
 - Start by reproducing the bug end-to-end, as close as possible to how an end
