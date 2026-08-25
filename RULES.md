@@ -55,6 +55,19 @@ machine-specific paths, or client names. Those belong in per-project memory.
   already existing. Any of these means someone may be mid-flight; coordinate
   or monitor instead of duplicating the work.
 
+## Session cleanup
+
+- Leave no orphans. When your work merges, remove the worktree, delete the
+  local branch, stop background processes you started (dev servers, watchers,
+  log tails), and shut down simulators you booted for tests.
+- When you notice leftovers from dead sessions (stale worktrees, branches,
+  processes), sweep them under one safety rule: clean tree AND merged PR means
+  remove. A dirty tree, an unmerged branch, or an open PR may be another
+  session mid-flight: leave it and flag it instead.
+- Squash merges defeat `git branch --merged` and ancestry checks. Verify a
+  branch is merged by its PR state (`gh pr list --head <branch> --state
+  merged`) before deleting anything.
+
 ## Waiting on long-running work
 
 - Never busy-wait by emitting no-op tool calls ("echo .", check-again turns)
