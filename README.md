@@ -12,8 +12,12 @@ This is the top layer of a three-layer setup:
 | Per-agent global | every project on one machine | `~/.claude/CLAUDE.md`, `~/.codex/AGENTS.md`, ... (the symlink targets) |
 | Per-project | one repo | that repo's own `CLAUDE.md` / `AGENTS.md`, committed with the project |
 
-Skills (on-demand capabilities) live in a separate repo. This repo is only the
-always-loaded rules.
+Skills (on-demand capabilities) live in a separate repo. This repo carries the
+always-loaded rules, plus `claude/agents/`: Claude Code agent definitions that
+bind rules from `RULES.md` (reviewers on the strongest model, worktree
+isolation) into dispatchable config. `install.sh` symlinks that dir to
+`~/.claude/agents`; the portable review procedure itself is the `review-lens`
+skill in the skills repo, so other harnesses get it without this binding.
 
 ## Setup on a new machine
 
